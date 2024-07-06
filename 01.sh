@@ -1,7 +1,5 @@
 #!/bin/bash 
 
-
-
 movies=("rajesh" "keerthi" "eshwar")
 
 echo "this is ${movies[0]}"
