@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-# echo "Hello, I am learning devops"
+
 
 movies=("rajesh" "keerthi" "eshwar")
 
