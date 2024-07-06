@@ -1,7 +1,4 @@
 #!/bin/bash 
 
-movies=("rajesh" "keerthi" "eshwar")
+echo "Hi, I am learning devops"
 
-echo "this is ${movies[0]}"
-echo "this is ${movies[1]}"
-echo "this is ${movies[2]}"
