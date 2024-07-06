@@ -1,9 +1,12 @@
 #!/bin/bash 
 
-n1=$1
-n2=$1
+num=$1
 
-sum=$(($n1+$n2))
+if [ $num -gt 10 ]
+then 
+    echo "Given $num is greater than 10"
+else
+    echo "Given $num is less than 10"
+fi 
 
-echo "total sum of $n1 and $n2 is $sum"
 
