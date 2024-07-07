@@ -2,7 +2,7 @@
 
 userid=$(id -u)
 timestamp=$(date +%F-%H-%M-%S)
-scriptname=$($0 | cut -d "." -f1)
+scriptname=$(echo $0 | cut -d "." -f1)
 logfile=/tmp/$timestamp-$scriptname.log 
 
 R="\e[31m"
