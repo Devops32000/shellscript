@@ -20,7 +20,7 @@ then
     echo "Please run with sudo previliges"
     exit 1
 else
-    echo "You are a super userr"
+    echo "You are a super user"
 fi 
 
 dnf install mysql -y &>>$logfile
