@@ -1,31 +1,30 @@
-#!/bin/bash 
+#!/bin/bash
 
-userid=$(id -u)
-timestamp=$(date +%F-%H-%M-%S)
-scriptname=$(echo $0 | cut -d "." -f1)
-logfile=/tmp/$timestamp-$scriptname.log 
-R="\e[31m"
-G="\e[32m"
-N="\e[0M"
+USERID=$(id -u)
+TIMESTAMP=$(date +%F-%H-%M-%S)
+SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
+LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
 
-validate(){
-    if [ $1 -ne 0 ]
-    then 
-        echo -e "$2....$R Failed $N"
+VALIDATE(){
+   if [ $1 -ne 0 ]
+   then
+        echo "$2...FAILURE"
         exit 1
-    else 
-        echo -e "$2....$G Success $N"
-    fi 
+    else
+        echo "$2...SUCCESS"
+    fi
 }
 
-if [ $userid -ne 0 ]
-then 
-    echo "Please run with sudo previliges" 
-    exit 1 
+if [ $USERID -ne 0 ]
+then
+    echo "Please run this script with root access."
+    exit 1 # manually exit if error comes.
 else
-    echo "Yeahhh you are a super user"
-fi 
+    echo "You are super user."
+fi
 
-dnf install mysql -y &>>$logfile
-validate $? "Installing mysql" 
+dnf install mysql -y &>>$LOGFILE
+VALIDATE $? "Installing MySQL"
 
+dnf install git -y &>>$LOGFILE
+VALIDATE $? "Installing Git"
