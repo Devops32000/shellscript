@@ -1,3 +1,5 @@
+#!/bin/bash 
+
 number = $1
 
 if [ $number -gt 10 ]
