@@ -1,10 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
-number=$1
-
-if [ $number -gt 10 ]
-then 
-    echo "Given $number is greater than 10"
-else
-    echo "Given $number is less than 10"
-fi 
+echo -n "Enter a line of text: "
+read string
