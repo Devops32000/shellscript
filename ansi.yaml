@@ -1,0 +1,93 @@
+- name: Pinging the server 
+  hosts: web 
+  tasks:
+  - name: Ping the server 
+    ansible.builtin.ping: 
+
+
+----
+
+- name: install and run nginx
+  hosts: web 
+  become: yes 
+  tasks: 
+  - name: install nginx 
+    ansible.builtin.dnf:
+      name: nginx 
+      state: latest 
+  - name: start and enable nginx 
+    ansible.builtin.service:
+      name: nginx 
+      state: started 
+      enabled: yes 
+---
+
+- name: check user status 
+  hosts: localhost 
+  become: yes 
+  tasks:
+  - name: check user
+    ansible.builtin.command: id expense 
+    register: USER 
+    ignore_errors: true 
+  - name: print user info 
+    ansible.builtin.debug:
+      msg: " here is the user info {{USER}}"
+  - name: add user
+    ansible.builtin.command: useradd expense
+    when USER.rc != 0
+
+---
+- name: installing packages 
+  hosts: localhost
+  become: yes 
+  tasks:
+  - name: packages 
+    ansible.builtin.dnf:
+      name: {{ item }}
+      state: latest
+    loop:
+    - mysql 
+    - nginx 
+
+---
+# Pod Definition
+
+kind: Pod 
+apiversion: v1
+metadata: 
+  name: nginx 
+spec:
+  conatiners:
+  - name: nginx 
+    image: nginx:stable-otel 
+  - name: alma
+    image: "almalinux:9"
+
+---
+kind: pod
+apiversion: v1
+metadata:
+  name: labels
+  labels:
+    course: k8
+    trainer: Rajesh
+spec:
+  containers:
+  - name: nginx
+    image: nginx 
+---
+#env
+kind: pod 
+apiversion: v2 
+metadata:
+  name: envi
+spec:
+  containers:
+  - name: nginx 
+    image: nginx 
+    env:
+    - name: kubernetes
+      value: 20hrs
+    - name: docker
+      value: 10hrs
