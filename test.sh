@@ -1,8 +1,8 @@
-#!/bin/bash 
+#!/bin/bash
 
-echo -n "enter a string"
-read string 
+echo -n "read a string "
+read input
 
-numCount=$(echo $string | grep -o "[0-9]" | wc --lines)
+vow=$( $input | grep -o -i ["aeiou"] | wc --lines )
 
-echo $numCount
+echo "This is $vow" 
