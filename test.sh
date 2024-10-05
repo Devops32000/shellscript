@@ -3,6 +3,6 @@
 echo -n "read a string "
 read input
 
-vow=$( $input | grep -o -i ["aeiou"] | wc --lines )
+vow=$( echo $input | grep -o -i "[aeiou]" | wc --lines )
 
 echo "This is $vow" 
