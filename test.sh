@@ -5,4 +5,4 @@ read string
 
 numcount=$(echo $string | grep -o "[0-9]")
 
-echo "$numcount"
+echo $numcount
